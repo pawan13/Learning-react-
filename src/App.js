@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import './App.css';
-import Car3 from './Components/Car';
+// import Car3 from './Components/Car';
 
 function App() {
   // const x = 5;
@@ -50,52 +51,304 @@ function App() {
 //   )
 // }
 
-{/*React Props */}
-{/* Props are arguments passed into React components. Props are passed to components via HTML attributes
-Example: 
-<Car brand= "Ford"/>
-The component receives the argument as a props object.
-props stands for properties
- */}
+// {/*React Props */}
+// {/* Props are arguments passed into React components. Props are passed to components via HTML attributes
+// Example: 
+// <Car brand= "Ford"/>
+// The component receives the argument as a props object.
+// props stands for properties
+//  */}
 
  // using the brand attribute in the component and props as object
 
- function Car(props){
-  return <h2>I am a {props.brand}!</h2>
- }
-// props are also how you pass data from one component to another, as parameters
- function Garage(){
-  return(
-    <>
-    <h1>Who lives in my garage?</h1>
-    <Car brand="Toyota Hilux 4WD"/>
-    </>
-  )
- }
+//  function Car(props){
+//   return <h2>I am a {props.brand}!</h2>
+//  }
+// // props are also how you pass data from one component to another, as parameters
+//  function Garage(){
+//   return(
+//     <>
+//     <h1>Who lives in my garage?</h1>
+//     <Car brand="Toyota Hilux 4WD"/>
+//     </>
+//   )
+//  }
 
- // if you have the variable to send and not a string, just put the variable name inside curly brackets.
- function Garage(){
-  const carName = "Toyota Ford Hilux 4WD"
-  return(
-    <>
-  <h1>Which Car is my garage?</h1>
-  <Car brand = {carName}/>
-  </>
-  )
- }
+//  // if you have the variable to send and not a string, just put the variable name inside curly brackets.
+//  function Garage(){
+//   const carName = "Toyota Ford Hilux 4WD"
+//   return(
+//     <>
+//   <h1>Which Car is my garage?</h1>
+//   <Car brand = {carName}/>
+//   </>
+//   )
+//  }
 
- // or if it was a object
- function Garage(){
-  const carInfo = { name: "Toyota", model:"Hilux 4WD"}
-  return(
-    <>
-    <h1>Which car is in my garage?</h1>
-    <Car brand= {carInfo.name} />
-    </>
-  )
- }
+//  // or if it was a object
+//  function Garage(){
+//   const carInfo = { name: "Toyota", model:"Hilux 4WD"}
+//   return(
+//     <>
+//     <h1>Which car is in my garage?</h1>
+//     <Car brand= {carInfo.name} />
+//     </>
+//   )
+//  }
 
- {/* React props are read only! you will get an error if you try to change their value*/}
+//  {/* React props are read only! you will get an error if you try to change their value*/}
+
+
+//  function Football() {
+//   const shoot = () => {
+//     alert ("Great shot !")
+//   }
+//   return (
+//     <button onClick={shoot}>Take the shoot!</button>
+//   )
+//  }
+
+ // To pass an argument to an event handler, we use an arrow function 
+
+//  function Football(){
+//   const shoot = (a) => {
+//     alert(a)
+//   }
+//   return(
+//   <button onClick={()=> shoot("Goal!")}>Take the shot!</button>
+//   )
+//  }
+
+ // react event object 
+ // Event handlers have access to the react event that triggered the function
+
+//  function Football(){
+//   const shoot =(a,b) =>{
+//     alert( b.type)
+//   }
+
+//   return(
+//     <button onClick={(event)=> shoot("goal", event)}>Take the shoot</button>
+//   )
+//  }
+
+// React Conditional rendering 
+//  In React, you can conditionally render the components 
+
+// if Statement 
+// we can use the if javaScript operator to decide which component to render 
+
+// function MissedGoal(){
+//   return <h1>Missed! </h1>
+// }
+
+// function MadeGoal(){
+//   return <h1>Goal!</h1>
+// }
+
+// function Goal(props){
+//   const isGoal = props.isGoal;
+
+//   if(isGoal){
+//     return <MadeGoal/>
+//   }
+//   return <MissedGoal/>
+//   }
+
+  // Logical && Operator 
+// Another way to conditionally render react is by using the && operator.
+// function Garage(props){
+//   const cars = props.cars
+
+//   return (
+//     <>
+//     <h1>Garage</h1>
+//     {cars.length > 0 &&
+//     <h2>You can {cars.length} cars in your garage.</h2>
+//     }
+//     </>
+//   )
+// }
+
+// const cars = ["", "", ""]
+
+//  Ternary Operator 
+// Another way to conditionally render elements is byy suing the ternary operator
+//  condition ? true : False
+
+// function Goal2(props){
+//   const isGoal = props.isGoal
+//   return (
+//     <>
+//     {isGoal? <MadeGoal/> : <MissedGoal/>} 
+//     </>
+//   )
+// }
+  
+//React Lists 
+// In React, we will render lists with some type of loop
+// The javaScript map() array method is generally the preferred method 
+// function Car(props){
+//   return <li>I am a {props.brand}</li>
+// }
+
+// function Garage(){
+//   const cars = ['Ford', 'BMW', 'Audi']
+//   return (
+//     <>
+//     <h1>Who lives in my garage?</h1>
+//     <ul>
+//       {cars.map((car)=> <Car brand={car}/>)}
+//     </ul>
+//     </>
+//   )
+// }
+
+// Keys 
+// keys allow react to keep track of elements. this way, if an item is updated or removed, only that item will be re-rendered instead of the entire list 
+
+// function Car(props){
+//   return <li>I am a {props.brand}</li>
+// }
+// function Garage(){
+//   const cars = [
+//     {id:1, brand: 'Ford'},
+//     {id:2, brand: 'BMW'},
+//     {id:1, brand: 'Audi'}
+//   ];
+//   return (
+//     <>
+//     <h1>Who lives in my garage?</h1>
+//     <ul>
+//       {cars.map((car)=> <Car key={car.id} brand={car.brand}/>)}
+//     </ul>
+//     </>
+//   )
+// }
+
+// React Forms 
+// we can add form with react like other element 
+// function MyForm(){
+//   return(
+//     <form>
+//       <label>Enter your name:
+//         <input type="text" />
+//       </label>
+//     </form>
+//   )
+// }
+
+// This will work as normal, the form will submit and the page will refresh
+// but this is generally not what we want to happen in react 
+// we want to prevent this default behavior and let react control the form 
+
+// Handling Forms 
+// Handling forms is about how you handle the data when it changes value or gets submitted. 
+// In HTML, form data is usually handled by the DOM.
+// In React, form data is usually handled by the components 
+// when the data is handled by the components, all the data is stored in the component state
+// you can control changes by adding event handlers in the onChange attribute 
+// we can use the useState Hook to keep track of each inputs value and provide a "single source of truth " for the entire application. 
+
+// function MyForm1(){
+//   const [name, setName] = useState("")
+
+//   return(
+//     <form action="">
+//       <label htmlFor="">Enter your name:
+//       <input type="text"
+//       value={name}
+//       onChange={(e)=> setName(e.target.value)} />
+//       </label>
+//     </form>
+//   )
+// }
+
+//Submitting Forms 
+// We can control the submit action by adding an event handler in the onSubmit attribute for the <form/>
+
+// function MyForm2(){
+//   const [name, setName] = useState('')
+
+//   const handleSubmit = (event)=> {
+//     event.preventDefault()
+//     alert(`The name you entered was: ${name}`)
+//   }
+
+//   return (
+//     <form action="" onSubmit={handleSubmit}>
+//       <label htmlFor=""> Enter your name: &nbsp;
+//         <input type="text"
+//         value={name}
+//         onChange={(e)=> setName(e.target.value)} />
+//       </label>
+//       <br/>
+//       <input type="submit" />
+//     </form>
+//   )
+// }
+
+// Multiple Input Fields 
+// you can control the values of more than one input filed by adding a name attribute to each element 
+// we will intialize our state with an empty object 
+// To access the fields in the event handler use the event.target.name and event.target.value syntax 
+// To update the state, use square brackets around the property name 
+
+// function MyForm3(){
+//   const [inputs, setInputs] = useState({})
+
+//   const handleChange = (event) =>{
+//     const name = event.target.name;
+//     const value = event.target.value;
+//     setInputs(values => ({...values, [name]: value}))
+//     }
+// // we use the same event handler function for both input fields, we could write one event handler for each, but this gives us much cleaner code and is the preferred way in react.
+//   const handleSubmit = (event) =>{
+//     event.preventDefault()
+//     alert(inputs)
+//   }
+
+//   return(
+//     <form action="" onSubmit={handleSubmit}>
+//       <label htmlFor="">
+//         Enter your name: &nbsp;
+//         <input type="text"
+//         name='username'
+//         value={inputs.username || ""}
+//         onChange={handleChange}
+//          />
+//       </label> <br />
+//       <label htmlFor="">Enter your age: &nbsp;
+//       <input type="number"
+//       name='age'
+//       value={inputs.age || ""}
+//       onChange={handleChange}
+//        />
+//       </label> <br />
+//       <input type="submit" />
+//     </form>
+//   )
+
+// }
+
+ //Textarea 
+  // the textarea element in react is slightly different from the ordinary HTML
+  // In HTML the value of a textarea was the next between the start tag <textarea> and the end tag </textarea>. but in the react the value of a textarea is placed in a value attribute and we will use the useState Hook to manage the value of the textarea
+  // function MyForm4(){
+  //   const [textarea, setTextarea]= useState(
+  //     "The content of a textarea goes in the value attribute"
+  //     )
+      
+
+  //     const handleChange= (event) =>{
+  //       setTextarea(event.target.value)
+  //     }
+  //     return(
+  //       <form action="">
+  //         <textarea value={textarea} onChange={handleChange}></textarea>
+  //       </form>
+  //     )
+  //  }
 
   return (
     <div className="App">
@@ -108,8 +361,25 @@ props stands for properties
         <Garage/>
   <Car3/>*/}
 
-  <Car brand = "Ford"/>
-  <Garage/>
+  {/* <Car brand = "Ford"/>
+  <Garage/> */}
+
+  {/* <Football/> */}
+
+
+  {/* <Garage cars = {cars}/>
+  <Goal isGoal={false}/>
+  <Goal2 isGoal={true}/> */}
+
+  {/* <Garage/> */}
+  {/* <Garage/> */}
+
+  {/* <MyForm/>
+  <MyForm1/>
+  <MyForm2/>
+  <MyForm3/>
+  <MyForm4/> */}
+  
 {/* =============== JSX +++++++++++++  */}
         {/* JSX -> JavaScript XML => makes it easier to write and add HTML in React*/}
 
@@ -154,7 +424,19 @@ Note: use attribute className instead of class. */}
 {/*<h1>{x < 10 ? "Hello Canberra" : "Welcome to Canberra"}</h1>
 Note: In order to embed a JavaScript expression inside JSX, the JavaScript must wrapped with curly braces.  */} 
 
+{/* React Events 
+Just like HTML DOM events, react can perform actions based on user events.
 
+React has the same events as HTML : click , change , mouseover, etc.
+
+react events are written in camelCase syntax:
+onClick instead of onClick 
+
+react event handlers are written inside the curly braces:
+onClick={shoot } instead of onClick="shoot()".
+*/}
+
+{/* <button onClick={shoot}>Take the shoot </button> */}
 
       </header>
     </div>
