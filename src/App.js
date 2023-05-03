@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import Car3 from './Components/Car';
-
+import Layout from './pages/Layout';
+import Home from './pages/Home';
+import Blogs from './pages/Blogs';
+import Contact from './pages/Contact';
+import NoPage from './pages/NoPage';
 function App() {
   // const x = 5;
 // let text = "Goodbye";
@@ -437,6 +442,31 @@ onClick={shoot } instead of onClick="shoot()".
 */}
 
 {/* <button onClick={shoot}>Take the shoot </button> */}
+
+{/* React Router  */}
+{/* Create react appdoesn't include page routing and react routing is the most popular solution. */}
+
+{/* Add react router  */}
+{/* run this terminal from the root directory of the application.  */}
+{/* npm i -D react-router-dom  */}
+
+
+{/*Folder Structure  
+to create an application with multiple page routes, let's first start with the file structure.
+Within the src folder we'll create a folder name pages with other files 
+each file will contain the react component.  */}
+
+<BrowserRouter>
+<Routes>
+  <Route path="/" element={<Layout/>}>
+  <Route index element={<Home/>} />
+  <Route path="blogs" element={<Blogs/>} />
+  <Route path="contact" element={<Contact/>} />
+  <Route path="*" element={<NoPage/>} />
+  </Route>
+</Routes>
+</BrowserRouter>
+
 
       </header>
     </div>
